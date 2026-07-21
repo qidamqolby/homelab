@@ -1,0 +1,16 @@
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    env_file:
+      - .env
+    command: tunnel run
+    environment:
+      TZ: ${TZ}
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    networks:
+      - dev-network
+networks:
+  dev-network:
+    external: true

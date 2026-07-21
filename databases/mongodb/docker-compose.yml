@@ -1,0 +1,30 @@
+services:
+  mongodb:
+    image: mongo:8
+    container_name: mongodb
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data/db
+      - ./init:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--quiet",
+          "--eval",
+          "db.adminCommand('ping').ok"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - dev-network
+networks:
+  dev-network:
+    external: true

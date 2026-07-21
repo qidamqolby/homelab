@@ -1,0 +1,27 @@
+# Secrets
+**/.env
+
+# Database data
+**/data/
+
+# Database initialization output
+**/init/*
+
+# Allow placeholder
+!**/init/.gitkeep
+
+# Backups
+/backup
+
+# Logs
+/logs
+
+# MinIO data
+minio/data/
+
+# Uptime Kuma data
+uptime-kuma/data/
+
+# Temporary files
+*.log
+*.pid
