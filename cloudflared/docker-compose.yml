@@ -9,6 +9,11 @@ services:
     environment:
       TZ: ${TZ}
       TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
     networks:
       - dev-network
 networks:

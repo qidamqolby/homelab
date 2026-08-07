@@ -9,20 +9,19 @@ services:
       - ./data:/var/lib/mysql
       - ./init:/docker-entrypoint-initdb.d:ro
     ports:
-      - "3306:3306"
+      - '3306:3306'
 
     healthcheck:
-      test:
-        [
-          "CMD",
-          "healthcheck.sh",
-          "--connect",
-          "--innodb_initialized"
-        ]
+      test: ['CMD', 'healthcheck.sh', '--connect', '--innodb_initialized']
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
     networks:
       - dev-network
 
